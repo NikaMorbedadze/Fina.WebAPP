@@ -1,0 +1,31 @@
+﻿@page "/products/updateproduct/{productID:int}"
+@inject HttpClient http
+@inject NavigationManager urlHelper
+<h3>UpdateProduct</h3>
+
+
+
+<ProductForm btnText="Update Product" Product="@product" OnValidSubmit="@Update"></ProductForm>
+
+
+
+@code {
+    [Parameter] public int productID { get; set; }
+    Product product = new Product();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        product = await http.GetFromJsonAsync<Product>($"api/product/{productID}");
+    }
+
+    async Task Update()
+    {
+        await http.PutAsJsonAsync("api/product", product);
+        urlHelper.NavigateTo("products");
+
+
+    }
+
+
+
+}

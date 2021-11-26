@@ -1,0 +1,83 @@
+﻿@page "/products"
+@inject HttpClient http
+@inject IJSRuntime js
+
+<h3>Products</h3>
+<div>
+    <a class="btn btn-success" style="color:white" href="products/createproduct">Add New Product</a>
+</div>
+<br />
+
+
+@if (products == null)
+{
+
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>პროდუქტის ID</th>
+                <th>დასახელება</th>
+                <th>ფასი</th>
+                <th>ქვეყანა</th>
+                <th>დაწყების თარიღი</th>
+                <th>დასრულების თარიღი</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+            <tr>
+                <td>@product.ID</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td>@product.Country</td>
+                <td>@product.StartDate</td>
+                <td>@product.EndDate</td>
+            </tr>
+                <tr>
+                    <td>
+                        <a button class="btn btn-success" style="color:white" href="products/updateproduct/@product.ID">Update</a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(product.ID))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+
+
+
+
+@code {
+    Product[] products { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProducts();
+    }
+
+    async Task LoadProducts()
+    {
+        products = await http.GetFromJsonAsync<Product[]>("api/product");
+        //products = new Product[]
+        //{
+        //    new Product(){ID =1, Description="მსხალი"  },
+        //    new Product(){ID =2, Description="ატამი"  },
+        //    new Product(){ID =3, Description="ვაშლი"  }
+        //};
+
+    }
+    async Task Delete(int productID)
+    {
+        if (await js.InvokeAsync<bool>("confirm", "Are you sure,you want to delete?"))
+        {
+            await http.DeleteAsync($"api/product/{productID}");
+            await LoadProducts();
+        }
+    }
+}
