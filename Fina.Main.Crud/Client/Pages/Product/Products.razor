@@ -2,9 +2,9 @@
 @inject HttpClient http
 @inject IJSRuntime js
 
-<h3>პროდუქტები</h3>
+<h3 class="productTTL">პროდუქტები</h3>
 <div>
-    <a class="btn btn-success" style="color:white" href="products/createproduct">ახალი პროდუქტი</a>
+    <a class="btn add-btn" style="color:white" href="products/createproduct"><span>✚</span> პროდუქტის დამატება </a>
 </div>
 <br />
 
@@ -18,16 +18,15 @@ else
 {
     <table class="table">
         <thead>
-            <tr>
+            <tr class="tr__title">
                 <th>პროდუქტის ID</th>
                 <th>დასახელება</th>
                 <th>ფასი</th>
                 <th>ქვეყანა</th>
                 <th>დაწყების თარიღი</th>
                 <th>დასრულების თარიღი</th>
+                <th>რედაქტირება</th>
             </tr>
-        </thead>
-        <tbody>
             @foreach (var product in products)
             {
             <tr>
@@ -37,14 +36,15 @@ else
                 <td>@product.Country</td>
                 <td>@product.StartDate</td>
                 <td>@product.EndDate</td>
-            </tr>
-                <tr>
-                    <td>
-                        <a button class="btn btn-success" style="color:white" href="products/updateproduct/@product.ID">Update</a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(product.ID))">Delete</button>
+                <td  class="editBox">
+                        <a class="editBtn" href="products/updateproduct/@product.ID">✎</a>
+                        <button class="delete" @onclick="@(()=>Delete(product.ID))">X</button>
                     </td>
-                </tr>
+            </tr>
             }
+        </thead>
+        <tbody>
+            
         </tbody>
     </table>
 
