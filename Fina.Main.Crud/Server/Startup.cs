@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Radzen;
 using System.Linq;
 
 namespace Fina.Main.Crud.Server
@@ -28,6 +29,10 @@ namespace Fina.Main.Crud.Server
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("FinaDbConnectionString")));
+            services.AddScoped<DialogService>();
+            services.AddScoped<NotificationService>();
+            services.AddScoped<TooltipService>();
+            services.AddScoped<ContextMenuService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +53,7 @@ namespace Fina.Main.Crud.Server
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
+
 
             app.UseRouting();
 

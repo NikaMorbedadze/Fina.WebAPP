@@ -1,11 +1,11 @@
 ﻿@page "/products/updateproduct/{productID:int}"
 @inject HttpClient http
 @inject NavigationManager urlHelper
-<h3>UpdateProduct</h3>
+<h3>პროდუქტის რედაქტირება</h3>
 
 
 
-<ProductForm btnText="Update Product" Product="@product" OnValidSubmit="@Update"></ProductForm>
+<ProductForm btnText="პროდუქტის რედაქტირება" Product="@product" OnValidSubmit="@Update"></ProductForm>
 
 
 
@@ -21,7 +21,7 @@
     async Task Update()
     {
         await http.PutAsJsonAsync("api/product", product);
-        urlHelper.NavigateTo("products");
+        urlHelper.NavigateTo("/");
 
 
     }

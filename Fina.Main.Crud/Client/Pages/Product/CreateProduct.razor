@@ -3,15 +3,15 @@
 @inject NavigationManager urlHelper
 
 
-<h3>Create Product</h3>
-
-<ProductForm btnText="Create Product" Product="@product" OnValidSubmit="@Create"></ProductForm>
+<h3>პროდუქტის დამატება</h3>
+<ProductForm btnText="პროდუქტის დამატება" Product="@product" OnValidSubmit="@Create"></ProductForm>
 
 @code {
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
     Product product = new Product();
     async Task Create()
     {
         await http.PostAsJsonAsync("api/product", product);
-        urlHelper.NavigateTo("products");
+        urlHelper.NavigateTo("/");
     }
 }

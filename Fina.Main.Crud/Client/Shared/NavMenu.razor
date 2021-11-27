@@ -7,25 +7,25 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        <li class="nav-item px-3">
+        @*<li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-        </li>
+        </li>*@
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="products" @onclick="()=>expandedSubMenu =!expandedSubMenu">
+            <NavLink class="nav-link" href="" @onclick="()=>expandedSubMenu =!expandedSubMenu">
                 <span class="oi oi-cart" aria-hidden="true"></span> პროდუქტები
             </NavLink>
             @if (expandedSubMenu)
             {
                 <ul class="nav flex-column">
                     <li class="nav-item px-3">
-                        <NavLink class="nav-link" href="product/1">
-                            <span class="oi oi-cart" aria-hidden="true"></span>აგრალრული
+                        <NavLink class="nav-link" href="">
+                            <span class="oi oi-cart" aria-hidden="true"></span>აგრარული
                         </NavLink>
                     </li>
                     <li class="nav-item px-3">
-                        <NavLink class="nav-link" href="product/2">
+                        <NavLink class="nav-link" href="">
                             <span class="oi oi-cart" aria-hidden="true"></span> კვება
                         </NavLink>
                     </li>

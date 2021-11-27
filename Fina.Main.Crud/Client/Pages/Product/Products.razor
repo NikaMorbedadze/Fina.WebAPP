@@ -1,10 +1,10 @@
-﻿@page "/products"
+﻿@page "/"
 @inject HttpClient http
 @inject IJSRuntime js
 
-<h3>Products</h3>
+<h3>პროდუქტები</h3>
 <div>
-    <a class="btn btn-success" style="color:white" href="products/createproduct">Add New Product</a>
+    <a class="btn btn-success" style="color:white" href="products/createproduct">ახალი პროდუქტი</a>
 </div>
 <br />
 
@@ -12,7 +12,7 @@
 @if (products == null)
 {
 
-    <p><em>Loading...</em></p>
+    <p><em>იტვირთება...</em></p>
 }
 else
 {

@@ -1,22 +1,15 @@
-﻿<h3>ProductForm</h3>
+﻿
 
 <EditForm Model="@Product" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator></DataAnnotationsValidator>
     <div class="form-field">
-        <label>პროდუქტის დასახელება </label>
-        <label>ფასი</label>
-        <label>ქვეყანა </label>
-        <label>დაწყების თარიღი </label>
-        <label>დასრულების თარიღი</label>
-        <div>
-            <InputText @bind-Value="@Product.Description"></InputText>
-            <InputNumber @bind-Value="@Product.Price"></InputNumber>
-            <InputText @bind-Value="@Product.Country"></InputText>
-            <InputDate @bind-Value="@Product.StartDate"></InputDate>
-            <InputDate @bind-Value="@Product.EndDate"></InputDate>
+        <div class="product__list">
+            <li><span>პროდუქტის დასახელება</span><InputText @bind-Value="@Product.Description"></InputText></li>
+            <li><span>ფასი</span><InputNumber @bind-Value="@Product.Price"></InputNumber></li>
+            <li><span>ქვეყანა</span><InputText @bind-Value="@Product.Country"></InputText></li>
+            <li><span>დაწყების თარიღი</span><InputDate @bind-Value="@Product.StartDate"></InputDate></li>
+            <li><span>დასრულების თარიღი</span><InputDate @bind-Value="@Product.EndDate"></InputDate></li>
             <ValidationMessage For="@(() => Product.Description)"></ValidationMessage>
-
-
         </div>
 
     </div>
